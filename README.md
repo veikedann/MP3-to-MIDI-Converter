@@ -1,97 +1,97 @@
-# Convertisseur MP3 vers MIDI
+# MP3 to MIDI Converter
 
-Une application web qui permet de convertir des fichiers audio MP3 en fichiers MIDI. L'application utilise Python avec Flask pour le backend et essentia-tensorflow pour l'analyse audio.
+A web application that allows you to convert MP3 audio files into MIDI files. The application uses Python with Flask for the backend and essentia-tensorflow for audio analysis.
 
-## Fonctionnalités
+## Features
 
-- Interface utilisateur simple et intuitive
-- Support du glisser-déposer de fichiers
-- Conversion en temps réel
-- Génération de fichiers MIDI standards
-- Barre de progression pour suivre la conversion
+- Simple and intuitive user interface
+- Drag-and-drop file support
+- Real-time conversion
+- Standard MIDI file generation
+- Progress bar to track conversion
 
-## Prérequis
+## Prerequisites
 
-- Python 3.8 ou supérieur
-- pip (gestionnaire de paquets Python)
+- Python 3.8 or higher
+- pip (Python package manager)
 
 ## Installation
 
-1. Clonez ce dépôt :
+1. Clone this repository:
 ```bash
-git clone [URL_DU_REPO]
-cd [NOM_DU_DOSSIER]
+git clone [REPO_URL]
+cd [FOLDER_NAME]
 ```
 
-2. Créez un environnement virtuel (recommandé) :
+2. Create a virtual environment (recommended):
 ```bash
 python -m venv venv
-source venv/bin/activate  # Sur macOS/Linux
-# ou
-.\venv\Scripts\activate  # Sur Windows
+source venv/bin/activate  # On macOS/Linux
+# or
+.\venv\Scripts\activate  # On Windows
 ```
 
-3. Installez les dépendances :
+3. Install the dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-## Utilisation
+## Usage
 
-1. Lancez l'application :
+1. Start the application:
 ```bash
 python app.py
 ```
 
-2. Ouvrez votre navigateur et accédez à :
+2. Open your browser and go to:
 ```
 http://localhost:5000
 ```
 
-3. Pour convertir un fichier MP3 :
-   - Glissez-déposez votre fichier MP3 dans la zone prévue
-   - Ou cliquez sur la zone pour sélectionner un fichier
-   - Cliquez sur "Convertir en MIDI"
-   - Le fichier MIDI sera automatiquement téléchargé
+3. To convert an MP3 file:
+   - Drag and drop your MP3 file into the designated area
+   - Or click the area to select a file
+   - Click "Convert to MIDI"
+   - The MIDI file will be automatically downloaded
 
-## Structure du projet
+## Project Structure
 
 ```
 .
-├── app.py              # Application Flask principale
-├── requirements.txt    # Dépendances Python
-├── templates/          # Templates HTML
-│   └── index.html     # Interface utilisateur
+├── app.py              # Main Flask application
+├── requirements.txt    # Python dependencies
+├── templates/          # HTML templates
+│   └── index.html     # User interface
 └── README.md          # Documentation
 ```
 
-## Dépendances principales
+## Main Dependencies
 
-- Flask : Framework web
-- essentia-tensorflow : Analyse audio
-- numpy : Calculs numériques
-- librosa : Traitement audio
-- python-midi : Génération de fichiers MIDI
+- Flask: Web framework
+- essentia-tensorflow: Audio analysis
+- numpy: Numerical computations
+- librosa: Audio processing
+- python-midi: MIDI file generation
 
 ## Limitations
 
-- La conversion est optimisée pour les fichiers musicaux avec des notes clairement définies
-- Les fichiers très complexes peuvent donner des résultats moins précis
-- La taille maximale des fichiers est limitée par la configuration de Flask
+- The conversion is optimized for music files with clearly defined notes
+- Very complex files may yield less accurate results
+- The maximum file size is limited by the Flask configuration
 
 ## Contribution
 
-Les contributions sont les bienvenues ! N'hésitez pas à :
-1. Forker le projet
-2. Créer une branche pour votre fonctionnalité
-3. Commiter vos changements
-4. Pousser vers la branche
-5. Ouvrir une Pull Request
+Contributions are welcome! Feel free to:
+1. Fork the project
+2. Create a branch for your feature
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
 
-## Licence
+## License
 
-Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
+This project is under the MIT license. See the `LICENSE` file for more details.
 
 ## Support
 
-Si vous rencontrez des problèmes ou avez des questions, n'hésitez pas à ouvrir une issue sur le dépôt GitHub. 
+If you encounter any issues or have questions, feel free to open an issue on the GitHub repository. 
