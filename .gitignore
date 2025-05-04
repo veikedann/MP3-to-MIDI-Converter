@@ -1,0 +1,26 @@
+# Environnement virtuel Python
+venv/
+ENV/
+env/
+.venv/
+
+# Fichiers compilés Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers temporaires
+*.tmp
+*.log
+
+# Fichiers de configuration personnels
+.env
+
+# Dossiers de test ou de build (si jamais tu en ajoutes)
+build/
+dist/
