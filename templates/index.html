@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Convertisseur MP3 vers MIDI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .container {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        #dropZone {
+            border: 2px dashed #ccc;
+            border-radius: 4px;
+            padding: 20px;
+            margin: 20px 0;
+            cursor: pointer;
+        }
+
+        #dropZone.dragover {
+            background: #e1e1e1;
+            border-color: #999;
+        }
+
+        .btn {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        .btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+
+        #status {
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background-color: #4CAF50;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Convertisseur MP3 vers MIDI</h1>
+        <p>Déposez votre fichier MP3 ou cliquez pour sélectionner</p>
+        
+        <form id="uploadForm" enctype="multipart/form-data">
+            <div id="dropZone">
+                <p>Déposez le MP3 ici ou cliquez pour parcourir</p>
+                <input type="file" id="fileInput" name="file" accept=".mp3" style="display: none">
+            </div>
+            
+            <div class="progress-bar" id="progressBar">
+                <div class="progress" id="progress"></div>
+            </div>
+            
+            <div id="status"></div>
+            
+            <button type="submit" id="convertBtn" class="btn" disabled>Convertir en MIDI</button>
+        </form>
+    </div>
+
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const convertBtn = document.getElementById('convertBtn');
+        const status = document.getElementById('status');
+        const progressBar = document.getElementById('progressBar');
+        const progress = document.getElementById('progress');
+        const form = document.getElementById('uploadForm');
+
+        // Gestionnaires d'événements pour la zone de dépôt
+        dropZone.addEventListener('click', () => fileInput.click());
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file && file.type === 'audio/mpeg') {
+                fileInput.files = e.dataTransfer.files;
+                convertBtn.disabled = false;
+                status.textContent = 'Fichier prêt à être converti';
+            }
+        });
+
+        // Gestionnaire de sélection de fichier
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                convertBtn.disabled = false;
+                status.textContent = 'Fichier prêt à être converti';
+            }
+        });
+
+        // Gestionnaire de soumission du formulaire
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            
+            try {
+                status.textContent = 'Conversion en cours...';
+                progressBar.style.display = 'block';
+                progress.style.width = '50%';
+                
+                const response = await fetch('/convert', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Erreur lors de la conversion');
+                }
+                
+                // Télécharger le fichier MIDI
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'converted.mid';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+                
+                progress.style.width = '100%';
+                status.textContent = 'Conversion terminée!';
+                
+            } catch (error) {
+                status.textContent = 'Erreur: ' + error.message;
+                progress.style.width = '0%';
+            }
+        });
+    </script>
+</body>
+</html> 
