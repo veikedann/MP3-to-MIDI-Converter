@@ -1,6 +1,6 @@
 # MP3 to MIDI Converter
 
-A web application that allows you to convert MP3 audio files into MIDI files. The application uses Python with Flask for the backend and essentia-tensorflow for audio analysis.
+A web application that converts MP3 audio files into MIDI files using Python, Flask, and audio processing libraries.
 
 ## Features
 
@@ -60,7 +60,9 @@ http://localhost:5000
 .
 ├── app.py              # Main Flask application
 ├── requirements.txt    # Python dependencies
-├── Procfile           # Configuration for deployment
+├── runtime.txt         # Python version specification
+├── system-requirements.txt # System dependencies
+├── .gitignore
 ├── templates/         # HTML templates
 │   └── index.html    # User interface
 └── README.md         # Documentation
@@ -77,17 +79,41 @@ http://localhost:5000
 
 ## Deployment
 
-### Local Development
-For local development, run:
+This project is configured for deployment on Railway. The deployment process is automated and will:
+1. Install system dependencies
+2. Install Python dependencies
+3. Start the application using Gunicorn
+
+## Local Development
+
+1. Clone the repository:
+```bash
+git clone https://github.com/veikedann/MP3-to-MIDI-Converter
+cd mp3-to-midi-converter
+```
+
+2. Create a virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # On macOS/Linux
+# or
+.\venv\Scripts\activate  # On Windows
+```
+
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+4. Run the application:
 ```bash
 python app.py
 ```
 
-### Production Deployment (Railway)
-1. Ensure all files are committed to your repository
-2. Connect your GitHub repository to Railway
-3. Railway will automatically detect the Python project
-4. The application will be deployed using the Procfile configuration
+5. Open your browser and go to:
+```
+http://localhost:5000
+```
 
 ## Limitations
 
