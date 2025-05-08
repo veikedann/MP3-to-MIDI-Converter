@@ -1,6 +1,6 @@
 flask==3.0.2
-essentia-tensorflow==2.1b6.dev1177
 numpy==1.26.4
 librosa==0.10.1
 midiutil==1.2.1
-gunicorn 
+gunicorn==21.2.0
+essentia==2.1b6.dev1177 
