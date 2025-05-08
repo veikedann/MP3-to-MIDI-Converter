@@ -19,8 +19,8 @@ A web application that allows you to convert MP3 audio files into MIDI files. Th
 
 1. Clone this repository:
 ```bash
-git clone [REPO_URL]
-cd [FOLDER_NAME]
+git clone https://github.com/veikedann/MP3-to-MIDI-Converter
+cd MP3-to-MIDI-Converter
 ```
 
 2. Create a virtual environment (recommended):
