@@ -14,14 +14,14 @@ def index():
 @app.route('/convert', methods=['POST'])
 def convert():
     if 'file' not in request.files:
-        return {'error': 'Aucun fichier n\'a été envoyé'}, 400
+        return {'error': 'No file uploaded'}, 400
     
     file = request.files['file']
     if file.filename == '':
-        return {'error': 'Aucun fichier sélectionné'}, 400
+        return {'error': 'No file selected'}, 400
     
     if not file.filename.endswith('.mp3'):
-        return {'error': 'Le fichier doit être au format MP3'}, 400
+        return {'error': 'File must be in MP3 format'}, 400
     
     try:
         # Sauvegarder le fichier temporairement
