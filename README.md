@@ -60,9 +60,10 @@ http://localhost:5000
 .
 ├── app.py              # Main Flask application
 ├── requirements.txt    # Python dependencies
-├── templates/          # HTML templates
-│   └── index.html     # User interface
-└── README.md          # Documentation
+├── Procfile           # Configuration for deployment
+├── templates/         # HTML templates
+│   └── index.html    # User interface
+└── README.md         # Documentation
 ```
 
 ## Main Dependencies
@@ -72,6 +73,21 @@ http://localhost:5000
 - numpy: Numerical computations
 - librosa: Audio processing
 - python-midi: MIDI file generation
+- gunicorn: Production server
+
+## Deployment
+
+### Local Development
+For local development, run:
+```bash
+python app.py
+```
+
+### Production Deployment (Railway)
+1. Ensure all files are committed to your repository
+2. Connect your GitHub repository to Railway
+3. Railway will automatically detect the Python project
+4. The application will be deployed using the Procfile configuration
 
 ## Limitations
 
