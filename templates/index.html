@@ -110,7 +110,7 @@
             e.preventDefault();
             dropZone.classList.remove('dragover');
             const file = e.dataTransfer.files[0];
-            if (file && file.type === 'audio/mpeg') {
+            if (file && file.name.toLowerCase().endsWith('.mp3')) {
                 fileInput.files = e.dataTransfer.files;
                 convertBtn.disabled = false;
                 status.textContent = 'Fichier prêt à être converti';
@@ -119,9 +119,12 @@
 
         // Gestionnaire de sélection de fichier
         fileInput.addEventListener('change', () => {
-            if (fileInput.files.length > 0) {
+            if (fileInput.files.length > 0 && fileInput.files[0].name.toLowerCase().endsWith('.mp3')) {
                 convertBtn.disabled = false;
                 status.textContent = 'Fichier prêt à être converti';
+            } else {
+                convertBtn.disabled = true;
+                status.textContent = 'Veuillez sélectionner un fichier MP3';
             }
         });
 
